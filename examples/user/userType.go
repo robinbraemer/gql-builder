@@ -8,13 +8,13 @@ import (
 
 type User struct {
 	// The global unique permanent id of the user.
-	id string
+	Id string `json:"id"`
 
 	// The name of the user.
-	name string
+	Name string `json:"name"`
 
 	// When the account was created.
-	createdAt time.Time
+	CreatedAt time.Time `json:"createdAt"`
 }
 
 var userType = gql.NewObject(gql.ObjectConfig{

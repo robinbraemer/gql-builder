@@ -6,25 +6,20 @@ import (
 	"time"
 )
 
+var Users = []User{
+	{Id: "robin", CreatedAt: time.Now(), Name: "Robin"},
+	{Id: "bob", CreatedAt: time.Now(), Name: "Bob"},
+}
+
 func InitTopic() *gqlb.SchemaTopic {
 	return &gqlb.SchemaTopic{
 		QueryFields: &gql.Fields{
-			"users": usersQuery(),
-		},
-	}
-}
-
-var Users = []User{
-	{id: "robin", createdAt: time.Now(), name: "Robin"},
-	{id: "bob", createdAt: time.Now(), name: "Bob"},
-}
-
-func usersQuery() *gql.Field {
-	return &gql.Field{
-		Type:        gql.NewNonNull(UserConnection()),
-		Description: "A list of users.",
-		Resolve: func(p gql.ResolveParams) (interface{}, error) {
-			return Users, nil
+			"users": &gql.Field{
+				Type: gql.NewNonNull(UserConnection()),
+				Resolve: func(p gql.ResolveParams) (interface{}, error) {
+					return Users, nil
+				},
+			},
 		},
 	}
 }

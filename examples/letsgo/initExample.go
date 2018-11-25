@@ -3,6 +3,7 @@ package letsgo
 import (
 	gql "github.com/graphql-go/graphql"
 	gqlb "github.com/cloudfound/gql-builder"
+	"time"
 )
 
 func InitTopic() *gqlb.SchemaTopic {
@@ -17,7 +18,7 @@ func InitTopic() *gqlb.SchemaTopic {
 			"go": &gql.Field{
 				Type: gqlb.DateTimeScalar(),
 				Resolve: func(p gql.ResolveParams) (interface{}, error) {
-					return true, nil
+					return time.Now(), nil
 				},
 				Description: "Get on the code!",
 			},

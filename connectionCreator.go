@@ -65,6 +65,9 @@ func NewConnection(config ConnectionConfig) *gql.Object {
 	fields["nodes"] = &gql.Field{
 		Type:        gql.NewNonNull(gql.NewList(config.Type)),
 		Description: NodesDesc,
+		Resolve: func(p gql.ResolveParams) (interface{}, error) {
+			return []string{"Hi"}, nil
+		},
 	}
 	fields["pageInfo"] = &gql.Field{
 		Type:        gql.NewNonNull(PageInfoType()),

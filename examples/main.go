@@ -1,14 +1,14 @@
 package main
 
 import (
-	gqlb "github.com/cloudfound/gql-builder"
-	gqlHandler "github.com/graphql-go/handler"
-	"github.com/cloudfound/gql-builder/examples/letsgo"
-	"github.com/cloudfound/gql-builder/examples/user"
+	gqlh "github.com/graphql-go/handler"
 	"fmt"
-	"syscall"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
+	"syscall"
+	"github.com/cloudfound/gql-builder/examples/letsgo"
+	gqlb "github.com/cloudfound/gql-builder"
+	"github.com/cloudfound/gql-builder/examples/user"
 )
 
 const Endpoint = "/example"
@@ -31,7 +31,7 @@ func main() {
 	fmt.Println("Schema initialized successfully.")
 
 	// HTTP GraphQL handler
-	h := gqlHandler.New(&gqlHandler.Config{
+	h := gqlh.New(&gqlh.Config{
 		Schema:   schema,
 		Pretty:   true,
 		GraphiQL: true,
@@ -44,3 +44,4 @@ func main() {
 	fmt.Printf("Graphql server listening on %s.\n", "http://127.0.0.1:8080"+Endpoint)
 	fmt.Println(r.Run("127.0.0.1:8080"))
 }
+
